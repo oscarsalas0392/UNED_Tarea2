@@ -9,11 +9,12 @@ export type ComentarioProps =
 }
 export const Comentario:React.FC<ComentarioProps>= ({pComentario}) => {
    
-    const {autor,comentario} = pComentario;
+    const {autor,comentario,fecha} = pComentario;
 
     return (
             <div className="content_comentario">
                 <p className='autor'>{autor}</p>
+                <p className='fecha'>{fecha}</p>
                 <p className='comentario'>{comentario}</p>
             </div>
     );

@@ -6,17 +6,15 @@ import { useForm } from "../../../utils/hooks";
 import { iComentario, iFormComentario } from "../../../utils/interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { agregarComentario } from "../../../store/publicacion/publicacionSlice";
-import { RootState } from "../../../store";
-import { editarMostrarForm } from "../../../store/comentario/comentarioSlice";
-
 
 
 export type AgregarComentarioProps =
 {
-    codigoPublicacion:number
+    codigoPublicacion:number,
+    close: ()=> void
 }
 
-export const AgregarComentario:React.FC<AgregarComentarioProps> = ({codigoPublicacion}) => {
+export const AgregarComentario:React.FC<AgregarComentarioProps> = ({codigoPublicacion,close}) => {
 
     const  {eDescripcion,eAutor,eAgregar} = environmets;
     const  dispatch = useDispatch();
@@ -30,17 +28,17 @@ export const AgregarComentario:React.FC<AgregarComentarioProps> = ({codigoPublic
     const {autor,descripcion,onInputChange} = useForm(formFields);
 
     const Submit = (event:any)=>{
-          event.preventDefault();
-          const date =  new Date();
-          const fecha =  `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}` 
-          const comentario:iComentario = { autor:autor,comentario:descripcion, fecha:fecha, codigo:"" }
-          dispatch(agregarComentario({codigoPublicacion,comentario}));
-          dispatch(editarMostrarForm(false));
-      }
+        event.preventDefault();
+        const date =  new Date();
+        const fecha =  `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}` 
+        const comentario:iComentario = { autor:autor,comentario:descripcion, fecha:fecha, codigo:"" }
+        dispatch(agregarComentario({codigoPublicacion,comentario}));
+        close();
+    }
  
  
      return (
-             <form className='content_form comentarios' onSubmit={Submit} >
+             <form className='content_form comentarios' onSubmit={(event:any)=>Submit(event)} >
                    <div className='content_input'>
                       <label htmlFor="autor" >{eAutor}</label>
                       <input type="text" required value={autor} onChange={onInputChange} name="autor" id="autor" />

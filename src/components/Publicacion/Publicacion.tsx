@@ -4,7 +4,7 @@ import { Inicio } from '../../pages/Inicio/Inicio';
 import { add, chat, edit } from '../../images';
 import { ColorButtons, PositionButtons, RutaPagina } from '../../utils/enums';
 import { useDispatch, useSelector } from 'react-redux';
-import { actualizarCodigoSeleccionado } from '../../store/publicacion/publicacionSlice';
+import { actualizarCodigoSeleccionado, agregarComentario } from '../../store/publicacion/publicacionSlice';
 import { useNavigate } from 'react-router-dom';
 import { iPublicacion } from '../../utils/interfaces';
 import { Comentario } from '../Comentario/Comentario';
@@ -12,7 +12,6 @@ import { iComentario } from '../../utils/interfaces/interfaces';
 import { useEffect, useState } from 'react';
 import { AgregarComentario } from '../Formulario/AgregarComentario/AgregarComentario';
 import { RootState } from '../../store';
-import { editarMostrarForm } from '../../store/comentario/comentarioSlice';
 
 export type PublicacionProps =
 {
@@ -24,8 +23,7 @@ export const Publicacion:React.FC<PublicacionProps> = ({publicacion}) => {
    
     const dispatch = useDispatch();
     const navigate = useNavigate();
-  
-    const {mostrarForm} = useSelector<RootState,any>((state:any) => state.comentario);
+    const [mostrarForm,setMostrarForm] = useState<boolean>();
 
     const {codigo,autor, titulo,archivo,descripcion,fecha,comentarios} = publicacion;
 
@@ -38,7 +36,11 @@ export const Publicacion:React.FC<PublicacionProps> = ({publicacion}) => {
        content?.classList.toggle("show");
     }
     const clickAddChat = ()=>{
-        dispatch(editarMostrarForm(true));
+        mostrarForm ? setMostrarForm(false) : setMostrarForm(true); 
+    }
+
+    const close = ()=>{
+        setMostrarForm(false);
     }
 
     return (
@@ -57,7 +59,7 @@ export const Publicacion:React.FC<PublicacionProps> = ({publicacion}) => {
                     <h2 className='comentarios'>Comentarios</h2>
                     <Boton icono={add}  click={clickAddChat}  color={ColorButtons.primary} posicion={PositionButtons.top}  />
                     {
-                        mostrarForm && <AgregarComentario codigoPublicacion={codigo} />
+                        mostrarForm && <AgregarComentario close={close} codigoPublicacion={codigo} />
                     }
                     {
                         comentarios.map((comentario:iComentario)=>(

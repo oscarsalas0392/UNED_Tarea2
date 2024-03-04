@@ -4,7 +4,15 @@
     background: #ddd;
     padding: 1rem;
     border-radius: .5rem;
+    position: relative;
     .autor{
         font-weight: bold;
+        margin-bottom: .5rem;
+    }
+
+    .fecha{
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
     }
 }

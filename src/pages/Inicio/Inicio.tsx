@@ -2,11 +2,13 @@
 import './Inicio.scss'
 import {  useNavigate } from "react-router-dom";
 import { ColorButtons, RutaPagina } from "../../utils/enums";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { iPublicacion, iPublicaciones } from "../../utils/interfaces";
 import { Boton, Publicacion } from "../../components";
 import { add } from '../../images';
+import { useEffect } from 'react';
+import { editarTitulo } from '../../store/header/headerSlice';
 
 
 
@@ -15,12 +17,17 @@ const {addPublicacion,editPublicacion} = RutaPagina;
 export const Inicio = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const {publicaciones} = useSelector<RootState,iPublicaciones>(state =>state.publicaciones);
 
     const clickAgregar = ()=>{
         navigate(addPublicacion);
     }
+
+    useEffect(()=>{
+        dispatch(editarTitulo("Publicaciones"));
+    },[])
 
     return (
         <div className="content_inicio">

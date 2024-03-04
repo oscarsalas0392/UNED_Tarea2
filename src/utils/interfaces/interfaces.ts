@@ -41,3 +41,9 @@ export interface iFormComentario
     autor:string,
     descripcion:string,
 }
+
+export interface mostrarForm
+{
+    autor:string,
+    descripcion:string,
+}
