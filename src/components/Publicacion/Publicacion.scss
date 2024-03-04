@@ -8,6 +8,7 @@
     .publicacion
     { 
         position: relative;
+        padding: .5rem;
         .autor{
             font-size: 1rem;
             color: #b1a9a9;
@@ -28,14 +29,14 @@
         .descripcion{
             margin-top: 1rem;
             text-align: left;
-            width: calc(100% - 3rem);
+      
         }
     
         .fecha{
             margin-top: 1rem;
             color: #b1a9a9;
             text-align: left;
-            width: calc(100% - 3rem);
+    
       
         }
 
