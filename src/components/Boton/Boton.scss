@@ -1,0 +1,33 @@
+.btn{
+    background: steelblue;
+    padding:.5rem .7rem;
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 1.5rem;
+        height: 1.5rem;
+        filter: invert(1);
+    }
+
+    &.gray{
+        background: #acb3c3;
+    }
+
+    &.top{
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    &.bottom{
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+    }
+}

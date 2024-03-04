@@ -1,0 +1,18 @@
+.content_form{
+    &.comentarios{
+        width:100%;
+        height:max-content;
+        padding: 0;
+
+        .content_input{
+            width: 100%;
+            label{
+                width: 9rem;
+            }
+            input,textarea{
+                border: 1px solid #ddd;
+                width: 100%;
+            }
+        }
+    }
+}
